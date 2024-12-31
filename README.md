@@ -1,6 +1,9 @@
-# Project: Rock Paper Scissors
+# Project: Rock,Paper, Scissors, Minus One
 
 This is The Odin Project - Rock Paper Scissors Javascript.
+However, I further enhanced it to become Rock, Paper, Scissors, Minus One
+
+This is inspired by Squid Game, where it is a variant of traditional rock, paper and scissors.
 
 Credit of images:
 Rock, Paper and Scissors hand gestures: Sertion - Photo by Fluff, modified by Sertion
