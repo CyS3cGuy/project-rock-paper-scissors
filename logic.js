@@ -70,80 +70,6 @@ updateDOMByGlobalVars(true, true, true);
 
 proceedBtn.addEventListener("click", proceedGame);
 
-
-
-// gameState = "Start" || gameState = "Continue" (IF proceed button is clicked and gameState is "Start" or "Continue")
-// 1. IF gameState = "Start"
-//    1.1 Initialise global variables. 
-// 2. IF gameState = "Continue"
-//    2.1 increase roundnum
-// 3. Create rock, paper and scissors buttons for 2 choices
-// 4. Assign values to rock (0), paper (1) and scissors (2) button
-// 5. Add event listener to the buttons, such that if gesture button is selected, value is stored in the player choice. however, buttons for the choice remain active for player to change their mind. 
-// 6. check if 2 buttons are pressed
-//    6.1 IF only 1 button is pressed, 
-//        6.1.1 update notification text to "Choose One More Gesture."
-//    6.2 ELSE IF 2 buttons are preseed,
-//        6.2.1 Update notification text to "Click Proceed Next Phase"
-//        6.2.2 Update proceed button text to "Proceed Next Phase"
-//        6.2.2 Enable the proceed button
-// 7. run computer logic to choose 2 values and store the 2 values in a predefined array
-//    7.1 create temporary array to store [0,1,2]
-//    7.2 Math.floor(Math.random() * (max - min + 1) + min) where max is 2 and 0 is min to determine first gesture. store it in the 1st element of predefined array
-//    7.3 filter out the temporary array to only store the unchosen number (tempArr.filter(e => e !== firstGesture))
-//    7.4 run Math.floor(Math.random() * (max - min + 1) + min) again where max is 1 and 0 is min to determine the index of array and obtain second gesture
-// 8. if player click proceed button, update gameState to "ProceedToMinus"
-//
-// gameState = "ProceedToMinus" (IF proceed button is clicked and gameState is "ProceedToMinus")
-// 1. disable proceed button
-// 2. Update phase text to "Minus One"
-// 2. remove rock, paper and scissors buttons 
-// 3. display choice image for player and computer
-// 4. compute the final choice for computer
-//    4.1 compute the chance of winning of first gesture for computer
-//        4.1.1 IF computer gesture value === player first gesture value
-//                  winning1 = 0.5
-//              ELSE IF computer gesture value > player first gesture value && computer gesture value + player first gesture value !== 2
-//                  winning1 = 1
-//        4.1.2 ELSE 
-//                  winning1 = -1 
-//        4.1.3 do the same for player second gesture (winning2)
-//        4.1.4 winningChance1 = (winning1 + winning2 / 2)
-//    4.2 compute the chance of winning of second gesture for computer
-//        4.2.2 do the same for winningChance2
-//    4.3 compare both chances of winning and select the gesture that yield highest chance of winning
-//        4.3.1 IF winningChance1 > winningChance2, select first gesture
-//        4.3.2 ELSE IF winningChance2 > winningChance1, select second gesture
-//        4.3.3 ELSE IF winningChance1 = winningChance2, Math.floor(Math.random() * (max - min + 1) + min) where max is 2 and 1 is min
-//              IF 1, then first gesture
-//              ELSE IF 2, then second gesture
-// 4. add event listener to the player choice container element in such a way that player can click on the image to choose his/her final choice
-//    4.1 upon click, get the value of the image container to determine the choice and store in predefined variable
-//    4.2 toggle border class to create a colored border around chosen image (remember to untoggle already chosen image if the new chosen is not the existing chosen)
-//    4.3 update proceed button text to "Confirm Final Choice"
-//    4.4 update notification text to "Click Confirm Final Choice"
-//    4.5 enable the proceed button
-// 5. if player click proceed button, update gameState to "FinalChoiceConfirm"
-//
-// gameState = "FinalChoiceConfirm" (IF proceed button is clicked and gameState is "FinalChoiceConfirm"
-// 1. remove player choice container element event listener
-// 2. compute who wins (reuse the function used for determine the winning chance. remember that -1 means player wins and 1 means computer wins, 0.5 means draw)
-// 2. compute score 
-// 3. check if score for player or computer reach 5
-//    3.1 IF playerScore || computerScore == 5
-//        3.1.1 IF playerScore == 5, then update notification text to "Congratulations! You win!"
-//        3.1.2 ELSE, update notification text to "Oops! Tough luck. You lose..."
-//        3.1.3 update proceed button text to "Start Another Game"
-//        3.1.5 update gameState to "Start"
-//        3.1.6 update phase text to "Game Completed"
-//    3.2 ELSE 
-//        3.2.1 IF player wins, update notifications to "You win this round!"
-//        3.2.2 ELSE IF computer wins, update notifications to "Computer wins this round!"
-//        3.2.3 ELSE update notifications to "This round is a draw"
-//        3.2.4 Update proceed button text to "Start Next Round"
-//        3.2.6 update gameState to "Continue"
-//        3.2.7 update phase text to "Round Completed"
-
 function proceedGame() {
     if (gameState === "Start" || gameState === "Continue") {
         if (gameState === "Start") {
@@ -216,14 +142,21 @@ function proceedGame() {
         winner = computeWinner(playerFinalChoice[0], computerFinalChoice[0]);
         computeScore(winner);
 
+        let winRoundMsg = `You choose ${GESTURES[playerFinalChoice[0]]}, Computer choose ${GESTURES[computerFinalChoice[0]]}. You WIN this round! Click "Start Next Round" button.`;
+        let loseRoundMsg = `You choose ${GESTURES[playerFinalChoice[0]]}, Computer choose ${GESTURES[computerFinalChoice[0]]}. You LOSE this round. Click "Start Next Round" button.`;
+        let drawRoundMsg = `You choose ${GESTURES[playerFinalChoice[0]]}, Computer choose ${GESTURES[computerFinalChoice[0]]}. This round is a DRAW. Click "Start Next Round" button.`
+
+        let winGameMsg = `You choose ${GESTURES[playerFinalChoice[0]]}, Computer choose ${GESTURES[computerFinalChoice[0]]}. Congratulations! You WIN the game!! Start another game, shall we?`;
+        let loseGameMsg = `You choose ${GESTURES[playerFinalChoice[0]]}, Computer choose ${GESTURES[computerFinalChoice[0]]}.Oops! You LOSE the game... Let's start another game?`;
+
         if (playerScore === 5 || computerScore === 5) {
-            notificationText = playerScore === 5 ? "Congratulations! You WIN the game!! Start another game, shall we?" : "Oops! You LOSE the game... Let's start another game?";
+            notificationText = playerScore === 5 ? winGameMsg : loseGameMsg;
             proceedBtnText = "Start Next Game";
             phaseText = "(Phase: Game Completed)";
             gameState = "Start";
         }
         else {
-            notificationText = winner === "player" ? 'You WIN this round! Click "Start Next Round" button.' : winner === "computer" ? 'You LOSE this round. Click "Start Next Round" button.' : 'This round is a DRAW. Click "Start Next Round" button.';
+            notificationText = winner === "player" ? winRoundMsg : winner === "computer" ? loseRoundMsg : drawRoundMsg;
             proceedBtnText = "Start Next Round";
             phaseText = "(Phase: Round Completed)";
             gameState = "Continue";
@@ -494,135 +427,3 @@ function computeScore(winner) {
 function randomiseNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
-// 
-
-/*
-// IF roundNum = 5
-if (roundNum === 5) {
-    // Zeroise the score
-    score = 0;
-
-    // Initialise the roundnum to 1
-    roundNum = 0;
-
-    // Replace score span on DOM with score variable
-    score_span.innerText = score.toString();
-
-    // Replace totalRound span on DOM with 0
-    totalRound_span.innerText = "0";
-}
-
-// Replace whowins span DOM with "?? "
-whowin_span.innerText = "?? Win";
-
-// Increase roundnum variable
-++roundNum;
-
-// Display updated round number on DOM
-roundnum_span.innerText = roundNum.toString();
-
-// Enable the human choice button DOM
-rock_button.disabled = false;
-paper_button.disabled = false;
-scissors_button.disabled = false;
-}
-
-// When user click any human choice button (Rock, Paper or Scissors)
-let chooseGesture = function (event) {
-// Store choice in human_choice variable (the '+' convert string to number)
-human_choice = getHumanChoice(event);
-
-// Disable human choice button DOM
-rock_button.disabled = true;
-paper_button.disabled = true;
-scissors_button.disabled = true;
-
-// Store a random number between 1 - 3 for computer choice in comp_choice variable
-computer_choice = getComputerChoice();
-
-// Replace choice image source path according to choice
-// minus 1 because index position starts at 0
-human_choice_image.src = IMG_PATHS[human_choice - 1];
-computer_choice_image.src = IMG_PATHS[computer_choice - 1];
-
-// Make choice text = display: none for human and computer
-human_choice_txt.style.display = "none";
-computer_choice_txt.style.display = "none";
-
-// Display choice image for human and computer
-human_choice_image.style.display = "block";
-computer_choice_image.style.display = "block";
-
-// Compare human choice and computer choice and determine who win
-// IF draw
-//   Store "Draw" in winner variable
-//   Increase score by 0.5 
-
-
-if (human_choice === 1 && computer_choice === 1 ||
-    human_choice === 2 && computer_choice === 2 ||
-    human_choice === 3 && computer_choice === 3) {
-    winner = "Draw";
-    score += 0.5;
-
-    // ELSE IF human win, 
-    //   Store "You Win" in winner variable
-    //   Increase score by 1
-} else if (human_choice === 1 && computer_choice === 3 ||
-    human_choice === 2 && computer_choice === 1 ||
-    human_choice === 3 && computer_choice === 2) {
-    winner = "You Win!";
-    score += 1;
-
-    // ELSE 
-    //   Computer win,
-    //   Store "Computer Win" in winner variable        
-} else {
-    winner = "Computer Win!";
-}
-
-// Replace whowins span DOM with the winner variable
-whowin_span.innerText = winner;
-
-// Replace the score span DOM with the score variable
-score_span.innerText = score.toString();
-
-// Replace the totalRound span DOM with the roundnum variable
-totalRound_span.innerText = roundNum.toString();
-
-// IF roundNum < 5
-//   Replace start-game-button text to "Start Next Round"
-if (roundNum < 5) {
-    startgame_button.innerText = "Start Next Round";
-}
-// ELSE IF roundNum = 5
-//   Replace start-game-button text to "Game Over. Restart Game?"
-
-else if (roundNum = 5) {
-    startgame_button.innerText = "Game Over. Restart Game?"
-}
-
-// Enable start-game-button
-startgame_button.disabled = false;
-}
-
-startgame_button.addEventListener("click", startGame);
-rock_button.addEventListener("click", chooseGesture);
-paper_button.addEventListener("click", chooseGesture);
-scissors_button.addEventListener("click", chooseGesture);
-
-// Get human choice function
-// INPUT: Mouse click event
-// OUTPUT: Number value from button element
-function getHumanChoice(event) {
-return +event.target.value;
-}
-
-// Get computer choice function
-// INPUT: null
-// OUTPUT: A random number value from 1 to 3
-function getComputerChoice() {
-return Math.round(Math.random() * 2 + 1);
-*/
-
