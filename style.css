@@ -15,11 +15,22 @@ p {
     padding: 0;
 }
 
+button {
+    cursor: pointer;
+}
 
 
+
+button:enabled:hover {
+    filter: brightness(0.8);
+    transition-duration: 200ms;
+}
+
+
+/* header */
 #logo {
     font-size: 32px;
-    padding: 16px 48px;
+    padding: 16px 200px;
     background-color: rgb(6, 44, 9);
     color: white;
     font-weight: 900;
@@ -27,7 +38,7 @@ p {
 
 #hero {
     font-size: 16px;
-    padding: 16px 48px;
+    padding: 16px 200px;
     background-color: rgb(6, 44, 9, 0.2);
     color: black;
     display: flex;
@@ -48,7 +59,7 @@ p {
 #hero-video {
     flex: auto;
     max-width: 800px;
-    min-width: 400px;
+    min-width: 200px;
     aspect-ratio: 16/9;
 }
 
@@ -63,78 +74,149 @@ p {
     background-color: rgb(6, 44, 9);
     color: white;
     font-weight: 900;
-    padding: 16px 48px;
+    padding: 16px 200px;
 }
 
-.chosen-border {
-    border: 3px solid rgb(19, 19, 104);
+/* content */
+#content {
+    font-size: 16px;
+    padding: 16px 200px;
 }
 
-.winner-border {
-    border: 3px solid rgb(26, 116, 26);
+#message-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    font-size: 16px;
 }
 
-.loser-border {
-    border: 3px solid red;
+#round-message {
+    font-weight: 800;
+    font-size: 24px;
+    width: 300px;
+    flex: auto;
+    color: rgb(6, 44, 9);
 }
 
-.draw-border {
-    border: 3px solid rgb(124, 124, 28);
+#btn-proceed:enabled {
+    font-size: 24px;
+    padding: 18px;
+    background-color: rgb(6, 44, 9);
+    color: white;
 }
 
-.content {
+#btn-proceed:disabled {
+    font-size: 24px;
+    padding: 18px;
+}
+
+
+#notification {
+    font-size: 24px;
+    color: rgb(6, 44, 9);
+    font-weight: 700;
+    margin: 80px 0;
+    text-align: center;
+    background-color: rgb(209, 247, 209);
+    padding: 16px;
+}
+
+#choice {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 8px;
+}
+
+.choice-container {
     flex: 1;
-    padding: 16px 48px;
+    min-width: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
 }
 
+.choice-box {
+    flex: auto;
+    width: 300px;
+    height: 250px;
+    border: 3px solid rgb(2, 29, 21);
+    box-sizing: border-box;
 
-.message-container {
     display: flex;
-    justify-content: space-between;
-    font-weight: 900;
-}
-
-.choice-image-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 48px;
 }
 
 .choice-image {
-    box-sizing: border-box;
-    width: 300px;
-    height: 250px;
-    border: 3px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex: 1;
 }
 
-.choice-image img {
+
+.choice-box img {
     width: 100%;
     height: 100%;
 }
 
 .button-choice {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     gap: 8px;
-    margin: 8px;
 }
 
 .button-choice button {
-    padding: 16px;
-    font-size: 16px;
+    flex: 1;
+} 
+
+.button-choice button:enabled {
+    font-size: 14px;
+    padding: 8px;
+    background-color: rgb(6, 44, 9);
+    color: white;
+    border: none;
 }
 
-.startgame-button-container {
-    display: flex;
-    justify-content: center;
-    margin: 24px;
-    
+.button-choice button:disabled {
+    font-size: 24px;
+    padding: 18px;
 }
 
-.startgame-button-container button {
-    font-size: 32px;
-    padding: 24px;
+.score {
+    font-size: 24px;
+    font-weight: 800;
+    color: rgb(6, 44, 9);
+}
+
+
+/* For javascript toggle class*/
+.pointercursor:hover {
+    cursor: pointer;
+    background-color: rgb(196, 243, 194);
+    transition-duration: 200ms;
+}
+
+.choice-box.chosen-border {
+    border: 8px solid rgb(65, 65, 201);
+    transition-duration: 100ms;
+}
+
+.winner-border {
+    border: 8px solid rgb(26, 116, 26);
+    transition-duration: 100ms;
+}
+
+.loser-border {
+    border: 8px solid red;
+    transition-duration: 100ms;
+}
+
+.draw-border {
+    border: 8px solid rgb(124, 124, 28);
+    transition-duration: 100ms;
 }

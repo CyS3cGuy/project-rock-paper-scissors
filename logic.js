@@ -11,7 +11,7 @@ let playerChoice = [-1, -1];
 let computerChoice = [-1, -1];
 let playerFinalChoice = [-1, -1]; // First element is the gesture value, second element is the index position of "playerChoice" being chosen
 let computerFinalChoice = [-1, -1]; // First element is the gesture value, second element is the index position of "computerChoice" being chosen
-let playerParaDisplay = ["block", "block"];
+let playerParaDisplay = ["none", "none"];
 let playerImgDisplay = ["none", "none"];
 let computerImgDisplay = ["none", "none"];
 let proceedBtnText = "Start Game";
@@ -106,6 +106,7 @@ function proceedGame() {
     else if (gameState === "ProceedToMinusOne") {
         proceedBtnDisabled = true;
         phaseText = "(Phase: Minus One)";
+        notificationText = "Click on the image to choose your final choice.";
         computerImgDisplay = ["block", "block"];
 
         clearAllChild(playerChoiceBtnContainer[0]);
@@ -128,6 +129,7 @@ function proceedGame() {
         computerFinalChoice = chooseFinalGestureForComputer(computerWinningChance, computerChoice);
 
         playerChoiceContainer.forEach((choiceBox) => {
+            choiceBox.classList.add("pointercursor");
             choiceBox.addEventListener("click", listen_selectChoiceBox);
         })
     }
@@ -137,6 +139,7 @@ function proceedGame() {
         playerChoiceContainer.forEach((choiceBox) => {
             choiceBox.removeEventListener("click", listen_selectChoiceBox);
             choiceBox.classList.remove("chosen-border");
+            choiceBox.classList.remove("pointercursor");
         });
 
         winner = computeWinner(playerFinalChoice[0], computerFinalChoice[0]);

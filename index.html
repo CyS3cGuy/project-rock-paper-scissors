@@ -1,74 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    
+
     <title>Project: Rock Paper Scissors Minus One</title>
 </head>
+
 <body>
     <div id="header">
         <nav id="logo">Rock, Paper, Scissors, Minus One</nav>
         <div id="hero">
             <div id="hero-text">
-                <p>Rock, Paper, Scissors Minus One is a simplified version of the classic game where one of the three traditional moves (Rock, Paper, or Scissors) is excluded, leaving players with only two choices. This adjustment alters the strategy and eliminates certain outcomes, such as draws in some scenarios.</p> 
+                <p>Rock, Paper, Scissors Minus One is a simplified version of the classic game where one of the three
+                    traditional moves (Rock, Paper, or Scissors) is excluded, leaving players with only two choices.
+                    This adjustment alters the strategy and eliminates certain outcomes, such as draws in some
+                    scenarios.</p>
 
-                <p>Watch as the Squid Game Recruiter (GongYoo) explains how to play Rock, Paper, Scissors, Minus One.</p>
+                <p>Watch as the Squid Game Recruiter (GongYoo) explains how to play Rock, Paper, Scissors, Minus One.
+                </p>
             </div>
             <div id="hero-video">
-                <iframe src="https://www.youtube.com/embed/Q4auMJndpuI?si=o3jJoXjDhS_9SPu9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/Q4auMJndpuI?si=o3jJoXjDhS_9SPu9" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
     </div>
 
     <div id="content">
         <div id="message-container">
-            <div id="game-note-message">Note: First to 5 wins!</div>
             <div id="round-message">Round <span id="roundnum-text">X</span> <span id="phase-text"></span></div>
             <button id="btn-proceed">Start Game</button>
-        </div>
-
-        <div id="player-choice-container">
-            <div id="player-score">Your Score: <span class="score">0</span></div>
             
-            <div id="player-choice-one" class="choice-box" value="0">
-                <div class="choice-image">
-                    <p></p>
-                    <img src="" alt="Your first choice">
-                </div>
-                
-                <div class="button-choice"></div>
-            </div>
-
-            <div id="player-choice-two" class="choice-box" value="1">
-                <div class="choice-image">
-                    <p></p>
-                    <img src="" alt="Your second choice">
-                </div>
-                
-                <div class="button-choice"></div>
-            </div>
         </div>
 
-        <div id="computer-choice-container">
-            <div id="computer-score">Computer Score: <span class="score">0</span></div>
+        <div id="notification"><span></span></div>
+
+        <div id="choice">
+            <div id="player-choice-container" class="choice-container">
+                <div id="player-score" class="score">Your Score: <span class="score">0</span></div>
+
+                <div id="player-choice-one" class="choice-box" value="0">
+                    <div class="choice-image">
+                        <p></p>
+                        <img src="" alt="Your first choice">
+                    </div>
+
+                    <div class="button-choice"></div>
+                </div>
+
+                <div id="player-choice-two" class="choice-box" value="1">
+                    <div class="choice-image">
+                        <p></p>
+                        <img src="" alt="Your second choice">
+                    </div>
+
+                    <div class="button-choice"></div>
+                </div>
+            </div>
+
+            <div id="computer-choice-container" class="choice-container">
+                <div id="computer-score" class="score">Computer Score: <span class="score">0</span></div>
+
+                <div id="computer-choice-one" class="choice-box" value="0">
+                    <div class="choice-image">
+                        <img src="" alt="Computer first choice">
+                    </div>
+                </div>
+
+                <div id="computer-choice-two" class="choice-box" value="1">
+                    <div class="choice-image">
+                        <img src="" alt="Computer second choice">
+                    </div>
+                </div>
+            </div>
+
             
-            <div id="computer-choice-one" class="choice-box" value="0">
-                <div class="choice-image">
-                    <img src="" alt="Computer first choice">
-                </div>
-            </div>
-
-            <div id="computer-choice-two" class="choice-box" value="1">
-                <div class="choice-image">
-                    <img src="" alt="Computer second choice">
-                </div>
-            </div>
         </div>
+
     </div>
-
-    <div id="notification"><span></span></div>
 
     <div id="footer">
         Inspired by - Squid Game: Rock Paper Scissors Minus One (C) 2024
@@ -76,4 +90,5 @@
 </body>
 
 <script src="./logic.js"></script>
+
 </html>
