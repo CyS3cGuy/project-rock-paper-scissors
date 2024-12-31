@@ -66,6 +66,21 @@ p {
     padding: 16px 48px;
 }
 
+.chosen-border {
+    border: 3px solid rgb(19, 19, 104);
+}
+
+.winner-border {
+    border: 3px solid rgb(26, 116, 26);
+}
+
+.loser-border {
+    border: 3px solid red;
+}
+
+.draw-border {
+    border: 3px solid rgb(124, 124, 28);
+}
 
 .content {
     flex: 1;
